@@ -8,7 +8,7 @@ app.use(express.json()); //what is this for?
 app.use(express.urlencoded({ extended: true })); //what is this for?
 app.use(express.static('public')); //what is this for?
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/turtletalkdb', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/turtletalkdb', {
   useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true
