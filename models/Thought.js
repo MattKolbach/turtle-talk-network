@@ -2,6 +2,33 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 
+/////   ReactionSchema   ///// this is the reaction field's subdocumant schema
+const ReactionSchema = new Schema(
+    {
+        reactionId: { //is the next line correct? why? what is it doing? it doesn't match documtntation
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId()
+        },
+        reactionBody: {
+            type: String,
+            required: 'Your reaction must say something.',
+            maxLength: 280,
+        },
+        username: {
+            type: String,
+            required: 'You forgot to enter your username.',
+        },
+        CreatedAt: {
+            type: Date,
+            default: Date.now,
+            get: createdAtVal => dateFormat(createdAtVal)
+        }
+    }
+)
+
+
+
+/////   ThoughtSchema   /////
 const ThoughtSchema = new Schema(
     {
         thoughtText: {
@@ -19,7 +46,7 @@ const ThoughtSchema = new Schema(
             type: String,
             required: 'You must enter your username.'
         },
-        reactions: [reactionSchema]
+        reactions: [ReactionSchema]
     },
     {
         toJSON: {
