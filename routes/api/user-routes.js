@@ -9,18 +9,18 @@ const {
 } = require('../../controllers/user-controller');
 
 router
-    .route('/users')
+    .route('/')
     .get(getAllUser)
     .post(createUser);
 
     router
-    .route('/users/:id')
+    .route('/:id')
     .get(getUserById)
     .put(updateUser)
     .delete(deleteUser);
 
 router
-    .route('/users/:userId/friends/:friendId')
+    .route('/:userId/friends/:friendId')
     .post()
     .delete();
 

@@ -11,18 +11,18 @@ const {
 } = require('../../controllers/thought-controller');
 
 router
-    .route('/thoughts')
+    .route('/')
     .get(getAllThought)
     .post(createThought);
 
 router
-    .route('/thoughts/:id')
+    .route('/:id')
     .get(getThoughtById)
     .put(updateThought) 
     .delete(deleteThought);
 
 router
-    .route('/thoughts/:thoughtId/reactions')
+    .route('/:thoughtId/reactions')
     .post(createReaction)
     .delete(deleteReaction);
 

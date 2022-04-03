@@ -37,12 +37,12 @@ const thoughtController = {
           .catch(err => res.json(err));
       },
 
-    createThought({ params, body }, res) {
+    createThought({ body }, res) {
         console.log(body);
         Thought.create(body)
         .then(({ _id }) => {
             return User.findOneAndUpdate(
-                { _id: params.UserId },
+                { _id: body.UserId },
                 { $push: { comments: _id } },
                 { new: true }
             );
