@@ -16,10 +16,16 @@ const UserSchema = new Schema(
             match: [/.+@.+..+/, 'Please enter an email address.'],
         },
         thoughts: [
-            String,
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought'
+                }
         ],
         friends: [
-            String,
+            {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+            }
         ],
     },
     {

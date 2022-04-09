@@ -39,7 +39,7 @@ router
     
 // /api/thoughts/:thoughtId/reactions/:reactionId
 router
-    .route('/:thoughtId/rections/:reactionId')
+    .route('/:thoughtId/reactions/:reactionId')
     .delete(deleteReaction);
 
 module.exports = router;

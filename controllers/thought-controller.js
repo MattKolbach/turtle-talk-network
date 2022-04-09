@@ -87,7 +87,7 @@ const thoughtController = {
     createReaction({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
-            { $push: { reactions: body }},
+            { $addToSet: { reactions: body }},
             { new: true, runValidators: true })
             .then(dbUserData => {
                 if (!dbUserData) {
@@ -100,12 +100,18 @@ const thoughtController = {
     },
 
     deleteReaction({ params }, res) {
+        console.log(params);
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
             { $pull: { reactions: { reactionId: params.reactionId } } },
-            { new: true }
+            { new: true, runValidators: true }
         )
-        .then(dbUserData => res.json(dbUserData))
+        .then(dbUserData => {
+            if(!dbUserData) {
+                res.status(404).json({ message: 'No reaction found with this id.' });
+            }
+            res.json(dbUserData)
+        })
         .catch(err => res.json(err));
     }
 
